@@ -1,4 +1,4 @@
-package seven.ipay.messaging.rmq.infrastructure.event;
+package com.seven.sevenipay.messaging.infrastructure.event;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;

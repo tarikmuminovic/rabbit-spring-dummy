@@ -1,5 +1,6 @@
-package seven.ipay.messaging.rmq.infrastructure;
+package com.seven.sevenipay.messaging.infrastructure;
 
+import com.seven.sevenipay.messaging.infrastructure.event.TransactionEngagedEvent;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.amqp.AmqpRejectAndDontRequeueException;
@@ -8,7 +9,6 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.lang.Nullable;
 import org.springframework.messaging.handler.annotation.Header;
 import org.springframework.stereotype.Component;
-import seven.ipay.messaging.rmq.infrastructure.event.TransactionEngagedEvent;
 
 import java.util.List;
 import java.util.Map;

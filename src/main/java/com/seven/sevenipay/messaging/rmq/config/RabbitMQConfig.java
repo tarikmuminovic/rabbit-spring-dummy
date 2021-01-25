@@ -1,4 +1,4 @@
-package seven.ipay.messaging.rmq.config;
+package com.seven.sevenipay.messaging.rmq.config;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.amqp.rabbit.config.SimpleRabbitListenerContainerFactory;
@@ -14,8 +14,8 @@ import org.springframework.context.annotation.Configuration;
 public class RabbitMQConfig {
     private final RabbitProperties properties;
 
-    public RabbitMQConfig (){
-        this.properties = new RabbitProperties();
+    public RabbitMQConfig (RabbitProperties rabbitProperties){
+        this.properties = rabbitProperties;
     }
 
     @Bean
