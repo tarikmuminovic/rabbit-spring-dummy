@@ -1,0 +1,55 @@
+version: '3.0'
+
+networks:
+  seven-ipay-network:
+    driver: bridge
+
+services:
+  #SQL
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin
+    container_name: seven-ipay-phpmyadmin
+    hostname: phpmyadminY
+    environment:
+      - PMA_ARBITRARY=1
+    ports:
+      - 8083:80
+    volumes:
+      - "./.data/seven-ipay-phpmyadmin:/sessions"
+    networks:
+      seven-ipay-network:
+        aliases:
+          - phpmyadminY
+  mariadb:
+    image: mariadb:10.4.7
+    container_name: seven-ipay-mariadb
+    hostname: sevenipaymariadbY
+    environment:
+      - MYSQL_DATABASE=seven-ipay-local
+      - MYSQL_USER=admin
+      - MYSQL_PASSWORD=admin
+      - MYSQL_ROOT_PASSWORD=admin
+    ports:
+      - 3306:3306
+    volumes:
+      - "./.data/seven-ipay-mariadb:/var/lib/mysql"
+    networks:
+      seven-ipay-network:
+        aliases:
+          - sevenipaymariadbY
+
+  #AMQP
+  rabbit1:
+    image: bijukunjummen/rabbitmq-server:3.7.0
+    container_name: seven-ipay-rabbit1
+    hostname: sevenipayrabbit1
+    ports:
+      - "5672:5672"
+      - "15672:15672"
+    environment:
+      - RABBITMQ_DEFAULT_USER=myuser
+      - RABBITMQ_DEFAULT_PASS=mypass
+    networks:
+      seven-ipay-network:
+        aliases:
+          - sevenipayrabbit1
